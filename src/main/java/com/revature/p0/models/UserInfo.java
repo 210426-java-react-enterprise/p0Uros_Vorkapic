@@ -11,6 +11,9 @@ public class UserInfo {
 	private String state;
 	private int postalCode;
 
+	public UserInfo() {
+		super();
+	}
 	public UserInfo(int id, String fName, String lName, String dob, String street, String city, String state, int postalCode) {
 		this.id = id;
 		this.fName = fName;

@@ -28,7 +28,7 @@ public class ProfileDAO {
 		return false;
 	}
 
-	public void insertNewProfileInfo(UserInfo profile) {
+	public void insertNewProfile(UserInfo profile) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "INSERT INTO user_info VALUES (?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -46,10 +46,10 @@ public class ProfileDAO {
 		}
 	}
 
-	public void editExistingProfile(UserInfo profile) {
+	public void editProfile(UserInfo profile) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "UPDATE user_info" +
-						 "SET first_name = ?, last_name = ?, dob = ?, street = ?, city = ?, state = ?, postal_code = ?" +
+						 "SET first_name = ?, last_name = ?, date_of_birth = ?, street_address = ?, city = ?, state = ?, postal_code = ?" +
 						 "WHERE user_id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(8, profile.getId());
@@ -66,20 +66,26 @@ public class ProfileDAO {
 		}
 	}
 
-	public void getExistingProfile(UserInfo profile) {
+	public void fetchProfile(int id) {
+		UserInfo profile = null;
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "UPDATE user_info" +
-					"SET first_name = ?, last_name = ?, dob = ?, street = ?, city = ?, state = ?, postal_code = ?" +
-					"WHERE user_id = ?";
+			String sql = "SELECT * FROM user_info WHERE user_id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(8, profile.getId());
-			pstmt.setString(1, profile.getfName());
-			pstmt.setString(2, profile.getlName());
-			pstmt.setString(3, profile.getDob());
-			pstmt.setString(4, profile.getStreet());
-			pstmt.setString(5, profile.getCity());
-			pstmt.setString(6, profile.getState());
-			pstmt.setInt(7, profile.getPostalCode());
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				profile = new UserInfo();
+				profile.setId(rs.getInt("user_id"));
+				profile.setfName(rs.getString("first_name"));
+				profile.setlName(rs.getString("last_name"));
+				profile.setDob(rs.getString("date_of_birth"));
+				profile.setStreet(rs.getString("street_address"));
+				profile.setCity(rs.getString("city"));
+				profile.setState(rs.getString("state"));
+				profile.setPostalCode(rs.getInt("postal_code"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
