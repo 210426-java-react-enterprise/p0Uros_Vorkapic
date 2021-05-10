@@ -18,5 +18,5 @@ public abstract class Screen {
 		return route;
 	}
 
-	abstract void render();
+	public abstract void render();
 }

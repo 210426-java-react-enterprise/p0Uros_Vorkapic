@@ -1,13 +1,22 @@
 package com.revature.p0.screens;
 
+import com.revature.p0.util.ScreenRouter;
+
+import java.io.BufferedReader;
+
 public class LoginScreen extends Screen {
 
-	public LoginScreen(String name, String route) {
+	private BufferedReader consoleReader;
+	private ScreenRouter router;
+
+	public LoginScreen(BufferedReader consoleReader, ScreenRouter router) {
 		super("LoginScreen", "/login");
+		this.consoleReader = consoleReader;
+		this.router = router;
 	}
 
 	@Override
-	void render() {
+	public void render() {
 
 	}
 }

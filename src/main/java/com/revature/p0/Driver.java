@@ -1,5 +1,6 @@
 package com.revature.p0;
 
+import com.revature.p0.util.AppState;
 import com.revature.p0.util.ConnectionFactory;
 
 import java.sql.Connection;
@@ -10,7 +11,10 @@ import java.util.ArrayList;
 
 public class Driver {
 
+	private static AppState app = new AppState();
+
 	public static void main(String[] args) {
+		// testing connection to database
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "select * from p0.users";
@@ -26,5 +30,8 @@ public class Driver {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		app.startup();
+		app.shutdown();
 	}
 }
