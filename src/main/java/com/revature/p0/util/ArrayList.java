@@ -49,7 +49,6 @@ public class ArrayList<T> implements List<T>{
 	 * Returns data from last index of ArrayList and deletes its contents
 	 * @return value of element in last position of ArrayList
 	 */
-	@Override
 	public T pop() {
 		T data =(T) array[numElements];
 		array[numElements] = null;

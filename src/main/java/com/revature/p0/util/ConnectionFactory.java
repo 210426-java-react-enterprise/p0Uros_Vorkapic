@@ -16,7 +16,9 @@ public class ConnectionFactory {
 	private static ConnectionFactory connectionFactory;
 	private Properties props = new Properties();
 
-	// Loads driver into memory
+	/**
+	 * Loads database driver into memory
+	 */
 	static {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -25,6 +27,9 @@ public class ConnectionFactory {
 		}
 	}
 
+	/**
+	 * Constructor: Reads database login credentials from local folder
+	 */
 	private ConnectionFactory() {
 		try {
 			props.load(new FileReader("src/main/resources/credentials.properties"));
@@ -33,6 +38,9 @@ public class ConnectionFactory {
 		}
 	}
 
+	/** Ensures only one instance of ConnectionFactory is running at a time.
+	 * @return same instance of ConnectionFactory if one already exists
+	 */
 	public static ConnectionFactory getInstance() {
 		if (connectionFactory == null) {
 			connectionFactory = new ConnectionFactory();
@@ -41,6 +49,9 @@ public class ConnectionFactory {
 		return connectionFactory;
 	}
 
+	/** Attempts to establish connection with server
+	 * @return connection to server or null; throws exception in latter case
+	 */
 	public Connection getConnection() {
 		Connection conn = null;
 
