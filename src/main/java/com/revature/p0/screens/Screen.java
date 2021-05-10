@@ -10,13 +10,17 @@ public abstract class Screen {
 		this.route = route;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public String getRoute() {
 		return route;
 	}
 
-	public abstract void render();
+	static void printHeader() {
+		System.out.println("##################################################");
+		System.out.println("#                                                #");
+		System.out.println("#                  Boolean Bank                  #");
+		System.out.println("#                                                #");
+		System.out.println("##################################################");
+	}
+
+	abstract public void render();
 }

@@ -19,31 +19,32 @@ public class WelcomeScreen extends Screen {
 
 	@Override
 	public void render() {
-		System.out.println("##################################");
-		System.out.println("#          Boolean Bank          #");
-		System.out.println("##################################");
-		System.out.println("# [1] Login                      #");
-		System.out.println("# [2] Sign Up!                   #");
-		System.out.println("# [3] Quit                       #");
-		System.out.println("##################################");
+		printHeader();
+		System.out.println("# Welcome to Boolean Bank!                       #");
+		System.out.println("# Where you either have an account or you don't! #");
+		System.out.println("##################################################");
+		System.out.println("# [0] Sign Up!                                   #");
+		System.out.println("# [1] Login                                      #");
+		System.out.println("# [2] Quit                                       #");
+		System.out.println("##################################################");
 
 		try {
 			System.out.print(">> ");
 			String userInput = consoleReader.readLine();
 			switch (userInput) {
+				case "0":
+					router.navigate("/signup");
+					break;
 				case "1":
 					router.navigate("/login");
 					break;
 				case "2":
-					router.navigate("/signup");
-					break;
-				case "3":
 					app().shutdown();
 					break;
 				default:
-					System.out.println("##################################");
-					System.out.println("# Invalid Selection, try again.  #");
-					System.out.println("##################################");
+					System.out.println("##################################################");
+					System.out.println("# Invalid Selection, try again.                  #");
+					System.out.println("##################################################");
 					System.out.println();
 			}
 		} catch (IOException e) {
