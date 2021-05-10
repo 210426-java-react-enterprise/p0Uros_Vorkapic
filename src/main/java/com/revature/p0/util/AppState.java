@@ -1,5 +1,6 @@
 package com.revature.p0.util;
 
+import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.SignUpScreen;
 import com.revature.p0.screens.WelcomeScreen;
@@ -9,12 +10,17 @@ import java.io.InputStreamReader;
 
 public class AppState {
 
+
 	private final ScreenRouter router;
 	private boolean appRunning;
 
 	public AppState() {
+
+
 		appRunning = true;
 		final BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+		final UserDAO userDao = new UserDAO();
+		userDao.testConnection();
 		router = new ScreenRouter();
 		router.addScreen(new WelcomeScreen(consoleReader, router))
 				.addScreen(new LoginScreen(consoleReader, router))
