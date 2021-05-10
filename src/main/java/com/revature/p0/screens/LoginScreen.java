@@ -22,17 +22,20 @@ public class LoginScreen extends Screen {
 
 	@Override
 	public void render() {
-		String username;
+		String identifier;
 		String password;
 
 		printHeader();
 		try {
-			System.out.println("# Username: ");
-			username = consoleReader.readLine();
+			System.out.println("# Username/Email: ");
+			identifier = consoleReader.readLine();
 			System.out.println("# Password: ");
 			password = consoleReader.readLine();
-			AppUser appUser = new AppUser(username, password, null);
+			AppUser appUser = new AppUser(identifier, password, identifier);
+
+			// authenticateUser will update appUser username or email accordingly
 			if (userService.authenticateUser(appUser)) {
+				router.addScreen(new DashboardScreen(consoleReader, router, appUser));
 				router.navigate("/dashboard");
 			}
 		} catch (IOException e) {

@@ -88,6 +88,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 				listReader.data = null;
 				listReader.prevNode.nextNode = listReader.nextNode;
 				listReader.nextNode.prevNode = listReader.prevNode;
+				listReader.nextNode = null;
+				listReader.prevNode = null;
 				return data;
 			} else {
 				listReader = listReader.nextNode;

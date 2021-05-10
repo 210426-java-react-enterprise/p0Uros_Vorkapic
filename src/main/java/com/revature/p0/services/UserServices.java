@@ -18,4 +18,8 @@ public class UserServices {
 	public void registerUser(AppUser newUser) {
 
 	}
+
+	public boolean isFirstTimeUser(AppUser newUser) {
+		return false;
+	}
 }

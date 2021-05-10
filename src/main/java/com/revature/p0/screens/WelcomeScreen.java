@@ -30,8 +30,7 @@ public class WelcomeScreen extends Screen {
 
 		try {
 			System.out.print(">> ");
-			String userInput = consoleReader.readLine();
-			switch (userInput) {
+			switch (consoleReader.readLine()) {
 				case "0":
 					router.navigate("/signup");
 					break;

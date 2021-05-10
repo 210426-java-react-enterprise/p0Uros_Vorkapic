@@ -22,6 +22,10 @@ public class UserInfo {
 		this.postalCode = postalCode;
 	}
 
+	public boolean compareWith(UserInfo otherProfile) {
+		return this.equals(otherProfile);
+	}
+
 	public int getId() {
 		return id;
 	}
