@@ -3,6 +3,7 @@ package com.revature.p0.util;
 //import java.lang.reflect.Array;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class ArrayList<T> implements List<T>{
 
@@ -26,9 +27,12 @@ public class ArrayList<T> implements List<T>{
 	 * @param data element being added to ArrayList
 	 */
 	@Override
-	public void add(T data) {
+	public void add(T data)  throws NullPointerException{
 		if (numElements == currentSize) {
 			doubleArray();
+		}
+		if (data == null) {
+			throw new NullPointerException();
 		}
 		array[numElements++] = data;
 	}
@@ -49,7 +53,10 @@ public class ArrayList<T> implements List<T>{
 	 * Returns data from last index of ArrayList and deletes its contents
 	 * @return value of element in last position of ArrayList
 	 */
-	public T pop() {
+	public T pop() throws IndexOutOfBoundsException{
+		if (numElements == 0) {
+			throw new IndexOutOfBoundsException();
+		}
 		T data =(T) array[numElements];
 		array[numElements] = null;
 		numElements--;
