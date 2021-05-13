@@ -41,10 +41,7 @@ public class WelcomeScreen extends Screen {
 					app().shutdown();
 					break;
 				default:
-					System.out.println("##################################################");
 					System.out.println("# Invalid Selection, try again.                  #");
-					System.out.println("##################################################");
-					System.out.println();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

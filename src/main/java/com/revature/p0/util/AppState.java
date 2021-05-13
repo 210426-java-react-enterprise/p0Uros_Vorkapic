@@ -15,6 +15,9 @@ public class AppState {
 	private final ScreenRouter router;
 	private boolean appRunning;
 
+	/**
+	 * Maintains the state of the application
+	 */
 	public AppState() {
 
 		appRunning = true;
@@ -28,12 +31,18 @@ public class AppState {
 				.addScreen (new SignUpScreen(consoleReader, router, userServices));
 	}
 
+	/**
+	 * Navigates to welcome screen when application loads
+	 */
 	public void startup() {
 		while (appRunning) {
 			router.navigate("/welcome");
 		}
 	}
 
+	/**
+	 * Shuts down application when invoked
+	 */
 	public void shutdown() {
 		this.appRunning = false;
 	}

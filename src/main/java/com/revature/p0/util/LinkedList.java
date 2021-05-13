@@ -14,6 +14,11 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 	private Node<T> head;
 	private Node<T> tail;
 
+	/**
+	 * Appends data to tail of list
+	 * @param data to be inserted
+	 * @throws IllegalArgumentException if null value is inserted
+	 */
 	@Override
 	public void add(T data) throws IllegalArgumentException {
 
@@ -61,7 +66,6 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 	}
 
 	/**
-	 * UNTESTED
 	 * Returns the head node's data without removing it, else returns null
 	 * @return head node or null
 	 */
@@ -75,7 +79,6 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 	}
 
 	/**
-	 * UNTESTED
 	 * Removes first instance of parameter found in LinkedList and returns it, otherwise returns null
 	 * @param data information to be removed from LinkedList
 	 * @return removed data or null
@@ -85,11 +88,12 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
 		while (listReader != null) {
 			if (listReader.data.equals(data)) {
-				listReader.data = null;
-				listReader.prevNode.nextNode = listReader.nextNode;
-				listReader.nextNode.prevNode = listReader.prevNode;
-				listReader.nextNode = null;
-				listReader.prevNode = null;
+				if (listReader.prevNode != null) {
+					listReader.prevNode.nextNode = listReader.nextNode;
+				}
+				if (listReader.nextNode != null) {
+					listReader.nextNode.prevNode = listReader.prevNode;
+				}
 				return data;
 			} else {
 				listReader = listReader.nextNode;
@@ -98,6 +102,11 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 		return null;
 	}
 
+	/**
+	 * retrieves data from specified index
+	 * @param index being searched
+	 * @return data found at index, null if none found
+	 */
 	@Override
 	public T get(int index) {
 
@@ -116,17 +125,28 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 		return null;
 	}
 
-	// TODO: (Associate task) implement this method!
+	/**
+	 * Checks whether data exists in list
+	 * @param data to be checked
+	 * @return true if found, false otherwise
+	 */
 	@Override
 	public boolean contains(T data) {
 		return false;
 	}
 
+	/**
+	 * @return size of list
+	 */
 	@Override
 	public int size() {
 		return size;
 	}
 
+	/**
+	 * local node class for maintaining the linked list
+	 * @param <T>
+	 */
 	private static class Node<T> {
 
 		T data;

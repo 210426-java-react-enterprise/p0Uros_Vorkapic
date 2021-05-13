@@ -2,56 +2,60 @@ package com.revature.p0.models;
 
 public class UserAccount {
 
-	private int account_id;
-	private int owner_id;
-	private int account_type; // 0 checking; 1 savings; 2 investment
-	private int balance;
+	private int accountId;
+	private int ownerId;
+	private int accountType; // 0 checking; 1 savings; 2 investment
+	private double balance;
 
-	public UserAccount (int account_id, int owner_id, int account_type, int balance) {
-		this.account_id = account_id;
-		this.owner_id = owner_id;
-		this.account_type = account_type;
+	public UserAccount() {
+		super();
+	}
+
+	public UserAccount (int accountId, int ownerId, int accountType, double balance) {
+		this.accountId = accountId;
+		this.ownerId = ownerId;
+		this.accountType = accountType;
 		this.balance = balance;
 	}
 
-	public int getAccount_id() {
-		return account_id;
+	public int getAccountId() {
+		return accountId;
 	}
 
-	public void setAccount_id(int account_id) {
-		this.account_id = account_id;
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 
-	public int getOwner_id() {
-		return owner_id;
+	public int getOwnerId() {
+		return ownerId;
 	}
 
-	public void setOwner_id(int owner_id) {
-		this.owner_id = owner_id;
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
 	}
 
-	public int getAccount_type() {
-		return account_type;
+	public int getAccountType() {
+		return accountType;
 	}
 
-	public void setAccount_type(int account_type) {
-		this.account_type = account_type;
+	public void setAccountType(int accountType) {
+		this.accountType = accountType;
 	}
 
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(int balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 
 	@Override
 	public String toString() {
 		return "UserAccount{" +
-				"account_id=" + account_id +
-				", owner_id=" + owner_id +
-				", account_type=" + account_type +
+				"account_id=" + accountId +
+				", owner_id=" + ownerId +
+				", account_type=" + accountType +
 				", balance=" + balance +
 				'}';
 	}

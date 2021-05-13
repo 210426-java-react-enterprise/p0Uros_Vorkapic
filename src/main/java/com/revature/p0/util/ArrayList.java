@@ -108,7 +108,7 @@ public class ArrayList<T> implements List<T>{
 	 * @throws IndexOutOfBoundsException if index is bigger than the number of elements in ArrayList or less than zero
 	 */
 	private void withinBounds(int index) throws IndexOutOfBoundsException {
-		if (index >= numElements || index < 0) {
+		if (index > numElements || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
 	}

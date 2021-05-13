@@ -1,5 +1,8 @@
 package com.revature.p0.screens;
 
+import com.revature.p0.exceptions.InvalidAuthenticationException;
+import com.revature.p0.exceptions.InvalidInputException;
+import com.revature.p0.exceptions.NoInputException;
 import com.revature.p0.models.AppUser;
 import com.revature.p0.services.UserServices;
 import com.revature.p0.util.ScreenRouter;
@@ -27,17 +30,17 @@ public class LoginScreen extends Screen {
 
 		printHeader();
 		try {
-			System.out.println("# Username/Email: ");
+			System.out.print("# Username/Email: ");
 			identifier = consoleReader.readLine();
-			System.out.println("# Password: ");
+			System.out.print("# Password: ");
 			password = consoleReader.readLine();
-			AppUser appUser = new AppUser(identifier, password, identifier);
-
-			// authenticateUser will update appUser username or email accordingly
-			if (userService.authenticateUser(appUser)) {
+			AppUser appUser = userService.authenticate(identifier, password);
+			if (appUser != null) {
 				router.addScreen(new DashboardScreen(consoleReader, router, appUser));
 				router.navigate("/dashboard");
 			}
+		} catch (NoInputException | InvalidInputException | InvalidAuthenticationException e) {
+			System.out.println("# " + e.getMessage());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

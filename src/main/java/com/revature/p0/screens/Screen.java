@@ -14,8 +14,8 @@ public abstract class Screen {
 		return route;
 	}
 
-	static void printHeader() {
-		System.out.println("##################################################");
+	protected static void printHeader() {
+		System.out.println("\n##################################################");
 		System.out.println("#                                                #");
 		System.out.println("#                  Boolean Bank                  #");
 		System.out.println("#                                                #");

@@ -1,6 +1,6 @@
 package com.revature.p0.models;
 
-public class UserInfo {
+public class UserProfile {
 
 	private int id;
 	private String fName;
@@ -9,12 +9,13 @@ public class UserInfo {
 	private String street;
 	private String city;
 	private String state;
-	private int postalCode;
+	private String postalCode;
 
-	public UserInfo() {
+	public UserProfile() {
 		super();
 	}
-	public UserInfo(int id, String fName, String lName, String dob, String street, String city, String state, int postalCode) {
+
+	public UserProfile(int id, String fName, String lName, String dob, String street, String city, String state, String postalCode) {
 		this.id = id;
 		this.fName = fName;
 		this.lName = lName;
@@ -25,8 +26,22 @@ public class UserInfo {
 		this.postalCode = postalCode;
 	}
 
-	public boolean compareWith(UserInfo otherProfile) {
-		return this.equals(otherProfile);
+	public boolean isEmpty() {
+		if (this.fName == null || this.fName.trim().isEmpty())
+			return true;
+		if (this.lName == null || this.lName.trim().isEmpty())
+			return true;
+		if (this.dob == null || this.dob.trim().isEmpty())
+			return true;
+		if (this.street == null || this.street.trim().isEmpty())
+			return true;
+		if (this.city == null || this.city.trim().isEmpty())
+			return true;
+		if (this.state == null || this.state.trim().isEmpty())
+			return true;
+		if (this.postalCode == null || this.postalCode.trim().isEmpty())
+			return true;
+		return false;
 	}
 
 	public int getId() {
@@ -85,11 +100,11 @@ public class UserInfo {
 		this.state = state;
 	}
 
-	public int getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(int postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
